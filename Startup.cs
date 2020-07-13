@@ -15,6 +15,7 @@ namespace DataStructBackend
 {
     public class Startup
     {
+        readonly string ALLOWED_FRONTEND = "FRONTEND_LINK";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +26,16 @@ namespace DataStructBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: ALLOWED_FRONTEND,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                                  });
+            });
             services.AddControllers();
         }
 
@@ -39,6 +50,8 @@ namespace DataStructBackend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(ALLOWED_FRONTEND);
 
             app.UseAuthorization();
 
