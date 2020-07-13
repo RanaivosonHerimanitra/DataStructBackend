@@ -15,21 +15,22 @@ namespace DataStructBackend.Controllers
 
         private readonly ILogger<DotnetArrayController> _logger;
         private readonly Random _random = new Random();
+        private readonly int MAX_ELEMENTS = 18;
 
         public DotnetArrayController(ILogger<DotnetArrayController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet("GetDotnetArrayWithRandomValues/{maxElements}")]
-        public long[] GetDotnetArrayWithRandomValues(int maxElements)
+        [HttpGet("fillArray")]
+        public IActionResult fillArray()
         {
-            var array = new DotnetArray<long>(maxElements);
-            for (int k = 0; k < maxElements; k++)
+            var array = new DotnetArray<long>(MAX_ELEMENTS);
+            for (int k = 0; k < MAX_ELEMENTS; k++)
             {
-                array.Insert(_random.Next(0, 100));
+                array.Insert(_random.Next(0, 999));
             }
-            return array.toArray();
+            return Ok(new { values = array.toArray() });
         }
     }
 }
