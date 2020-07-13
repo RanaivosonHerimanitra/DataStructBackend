@@ -15,8 +15,7 @@ namespace DataStructBackend.Controllers
 
         private readonly ILogger<DotnetArrayController> _logger;
         private readonly Random _random = new Random();
-        private readonly int MAX_ELEMENTS = 18;
-        
+        private static int MAX_ELEMENTS = 18;
         public DotnetArrayController(ILogger<DotnetArrayController> logger)
         {
             _logger = logger;
@@ -33,7 +32,7 @@ namespace DataStructBackend.Controllers
             return Ok(new { values = array.toArray() });
         }
 
-        [HttpGet("findArray/binarysearch")]
+        [HttpPost("findArray/binarysearch")]
         public IActionResult findArrayBinarySearch([FromBody] BinarySearchQuery searchQuery)
         {
             var array = new DotnetArray<long>(MAX_ELEMENTS);

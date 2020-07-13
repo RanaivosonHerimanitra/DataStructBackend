@@ -9,8 +9,9 @@ namespace DataStruct
     public class DotnetArray<T>
     {
         private T[] instanceArray;
+        private static int MAX_ELEMENTS = 18;
         private int nElemens;
-        public int[] visitedIndexOnBinarySearch = { };
+        public List<int> visitedIndexOnBinarySearch = new List<int>();
         public bool Found;
         // le constructeur de l Array
         public DotnetArray(int maxElement)
@@ -37,13 +38,15 @@ namespace DataStruct
         public BinarySearchResult BinarySearch(long[] currentArray, long searchKey)
         {
             int lowerBound = 0;
-            int upperBound = nElemens - 1;
+            int upperBound = currentArray.Length - 1;
             int currentIndex;
+            int k = 0;
             Array.Sort(instanceArray);
+           
             while (true)
             {
                 currentIndex = (lowerBound + upperBound)/ 2;
-                visitedIndexOnBinarySearch.Append(currentIndex);
+                visitedIndexOnBinarySearch.Add(currentIndex);
                 if (currentArray[currentIndex] == searchKey)
                 {
                     this.Found = true;
@@ -63,6 +66,7 @@ namespace DataStruct
                         upperBound = currentIndex - 1;
                     }
                 }
+                k += 1;
             }
         }
 
@@ -101,7 +105,7 @@ namespace DataStruct
     }
     public class BinarySearchResult
     {
-        public int[] VisitedIndex {get;set;}
+        public List<int> VisitedIndex {get;set;}
         public bool Found { get; set; }
     }
 
