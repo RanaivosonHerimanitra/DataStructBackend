@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DataStruct
@@ -9,7 +10,8 @@ namespace DataStruct
     {
         private T[] instanceArray;
         private int nElemens;
-
+        public int[] visitedIndexOnBinarySearch = { };
+        public bool Found;
         // le constructeur de l Array
         public DotnetArray(int maxElement)
         {
@@ -31,25 +33,28 @@ namespace DataStruct
         }
 
         // Binary search
-        public int BinarySearch(long searchKey)
+        public BinarySearchResult BinarySearch(long[] currentArray, long searchKey)
         {
             int lowerBound = 0;
             int upperBound = nElemens - 1;
             int currentIndex;
+            Array.Sort(instanceArray);
             while (true)
             {
                 currentIndex = (lowerBound + upperBound)/ 2;
-                if (instanceArray[currentIndex].Equals(searchKey))
+                visitedIndexOnBinarySearch.Append(currentIndex);
+                if (currentArray[currentIndex] == searchKey)
                 {
-                    return currentIndex;
+                    this.Found = true;
+                    return new BinarySearchResult() { Found = this.Found, VisitedIndex = visitedIndexOnBinarySearch};
                 } else if (lowerBound > upperBound)
                 {
-                    return -1;
-                } else
+                    this.Found = false;
+                    return new BinarySearchResult() { Found = this.Found, VisitedIndex = visitedIndexOnBinarySearch };
+                }
+                else
                 {
-                    // expect an ordered array:
-                    var tmpArray = instanceArray[currentIndex] as long?;
-                    if (tmpArray < searchKey)
+                    if (currentArray[currentIndex] < searchKey)
                     {
                         lowerBound = currentIndex + 1;
                     } else
@@ -92,5 +97,16 @@ namespace DataStruct
         {
             return instanceArray as T[];
         }
+    }
+    public class BinarySearchResult
+    {
+        public int[] VisitedIndex {get;set;}
+        public bool Found { get; set; }
+    }
+
+    public class BinarySearchQuery
+    {
+        public long[] Array { get; set; }
+        public long searchKey { get; set; }
     }
 }

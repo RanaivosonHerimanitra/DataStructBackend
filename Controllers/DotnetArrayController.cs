@@ -16,7 +16,7 @@ namespace DataStructBackend.Controllers
         private readonly ILogger<DotnetArrayController> _logger;
         private readonly Random _random = new Random();
         private readonly int MAX_ELEMENTS = 18;
-
+        
         public DotnetArrayController(ILogger<DotnetArrayController> logger)
         {
             _logger = logger;
@@ -31,6 +31,14 @@ namespace DataStructBackend.Controllers
                 array.Insert(_random.Next(0, 999));
             }
             return Ok(new { values = array.toArray() });
+        }
+
+        [HttpGet("findArray/binarysearch")]
+        public IActionResult findArrayBinarySearch([FromBody] BinarySearchQuery searchQuery)
+        {
+            var array = new DotnetArray<long>(MAX_ELEMENTS);
+            array.BinarySearch(searchQuery.Array, searchQuery.searchKey);
+            return Ok(new BinarySearchResult { VisitedIndex= array.visitedIndexOnBinarySearch, Found = array.Found });
         }
     }
 }
