@@ -16,7 +16,7 @@ namespace DataStruct
             instanceArray = new T[maxElement];
             nElemens = 0;
         }
-
+        // Naive version
         public bool Find(T searchKey)
         {
             int j;
@@ -28,6 +28,36 @@ namespace DataStruct
                 }
             }
             return false;
+        }
+
+        // Binary search
+        public int BinarySearch(long searchKey)
+        {
+            int lowerBound = 0;
+            int upperBound = nElemens - 1;
+            int currentIndex;
+            while (true)
+            {
+                currentIndex = (lowerBound + upperBound)/ 2;
+                if (instanceArray[currentIndex].Equals(searchKey))
+                {
+                    return currentIndex;
+                } else if (lowerBound > upperBound)
+                {
+                    return -1;
+                } else
+                {
+                    // expect an ordered array:
+                    var tmpArray = instanceArray[currentIndex] as long?;
+                    if (tmpArray < searchKey)
+                    {
+                        lowerBound = currentIndex + 1;
+                    } else
+                    {
+                        upperBound = currentIndex - 1;
+                    }
+                }
+            }
         }
 
         public void Insert(T value)
@@ -50,7 +80,7 @@ namespace DataStruct
                     {
                         instanceArray[k] = instanceArray[k + 1];
                     }
-                    // decremente le nbre totql d element car on a perdu 1:
+                    // decremente le nbre total d element car on a perdu 1:
                     nElemens -= 1;
                     return true;
                 }
