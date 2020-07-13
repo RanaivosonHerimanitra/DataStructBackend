@@ -33,6 +33,7 @@ namespace DataStruct
         }
 
         // Binary search
+        // oriented to be exposed at an API call
         public BinarySearchResult BinarySearch(long[] currentArray, long searchKey)
         {
             int lowerBound = 0;
