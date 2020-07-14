@@ -9,10 +9,9 @@ namespace DataStruct
     public class DotnetArray<T>
     {
         private T[] instanceArray;
-        private static int MAX_ELEMENTS = 18;
         private int nElemens;
         public List<int> visitedIndexOnBinarySearch = new List<int>();
-        public bool Found;
+        public bool found;
         // le constructeur de l Array
         public DotnetArray(int maxElement)
         {
@@ -49,12 +48,12 @@ namespace DataStruct
                 visitedIndexOnBinarySearch.Add(currentIndex);
                 if (currentArray[currentIndex] == searchKey)
                 {
-                    this.Found = true;
-                    return new BinarySearchResult() { Found = this.Found, VisitedIndex = visitedIndexOnBinarySearch};
+                    this.found = true;
+                    return new BinarySearchResult() { Found = this.found, VisitedIndex = visitedIndexOnBinarySearch};
                 } else if (lowerBound > upperBound)
                 {
-                    this.Found = false;
-                    return new BinarySearchResult() { Found = this.Found, VisitedIndex = visitedIndexOnBinarySearch };
+                    this.found = false;
+                    return new BinarySearchResult() { Found = this.found, VisitedIndex = visitedIndexOnBinarySearch };
                 }
                 else
                 {
