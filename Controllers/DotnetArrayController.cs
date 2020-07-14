@@ -29,7 +29,9 @@ namespace DataStructBackend.Controllers
             {
                 array.Insert(_random.Next(0, 999));
             }
-            return Ok(new { values = array.toArray() });
+            long[] tmpArray= array.toArray();
+            Array.Sort(tmpArray);
+            return Ok(new { values =tmpArray});
         }
 
         [HttpPost("findArray/binarysearch")]
