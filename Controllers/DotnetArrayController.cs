@@ -15,14 +15,14 @@ namespace DataStructBackend.Controllers
 
         private readonly ILogger<DotnetArrayController> _logger;
         private readonly Random _random = new Random();
-        private static int MAX_ELEMENTS = 18;
+        private static readonly int MAX_ELEMENTS = 18;
         public DotnetArrayController(ILogger<DotnetArrayController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet("fillArray")]
-        public IActionResult fillArray()
+        [HttpGet("generateArray")]
+        public IActionResult GenerateArray()
         {
             var array = new DotnetArray<long>(MAX_ELEMENTS);
             for (int k = 0; k < MAX_ELEMENTS; k++)
@@ -33,10 +33,10 @@ namespace DataStructBackend.Controllers
         }
 
         [HttpPost("findArray/binarysearch")]
-        public IActionResult findArrayBinarySearch([FromBody] BinarySearchQuery searchQuery)
+        public IActionResult FindArrayBinarySearch([FromBody] BinarySearchQuery searchQuery)
         {
             var array = new DotnetArray<long>(MAX_ELEMENTS);
-            array.BinarySearch(searchQuery.Array, searchQuery.searchKey);
+            array.BinarySearch(searchQuery.Array, searchQuery.SearchKey);
             return Ok(new BinarySearchResult { VisitedIndex= array.visitedIndexOnBinarySearch, Found = array.Found });
         }
     }

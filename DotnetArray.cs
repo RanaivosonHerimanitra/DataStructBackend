@@ -112,6 +112,6 @@ namespace DataStruct
     public class BinarySearchQuery
     {
         public long[] Array { get; set; }
-        public long searchKey { get; set; }
+        public long SearchKey { get; set; }
     }
 }
