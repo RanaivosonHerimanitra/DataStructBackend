@@ -24,8 +24,8 @@ namespace DataStructBackend.Controllers
         [HttpGet("generateArray")]
         public IActionResult GenerateArray()
         {
-            var array = new DotnetArray<long>(MAX_ELEMENTS);
-            for (int k = 0; k < MAX_ELEMENTS; k++)
+            var array = new DotnetArray<long>(MAX_ELEMENTS + 1);
+            for (int k = 0; k < MAX_ELEMENTS + 1; k++)
             {
                 array.Insert(_random.Next(0, 999));
             }
@@ -35,7 +35,7 @@ namespace DataStructBackend.Controllers
         [HttpPost("findArray/binarysearch")]
         public IActionResult FindArrayBinarySearch([FromBody] BinarySearchQuery searchQuery)
         {
-            var array = new DotnetArray<long>(MAX_ELEMENTS);
+            var array = new DotnetArray<long>(MAX_ELEMENTS + 1);
             array.BinarySearch(searchQuery.Array, searchQuery.SearchKey);
             return Ok(new BinarySearchResult { VisitedIndex= array.visitedIndexOnBinarySearch, Found = array.Found });
         }
