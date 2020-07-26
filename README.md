@@ -8,6 +8,7 @@ Using C# as backend, and angular as frontend, I try to illustrate algorithms lik
 * Binary search (applicable to an ordered array)
 * Linear search
 * Bubble sort: consists of swapping values in an array until entire array is ordered
+* Stack: you are only allowed to access the last inserted item. If you remove this item, you can access the next to last item inserted.
 
 ### Ordered array:
 
