@@ -7,6 +7,7 @@ Using C# as backend, and angular as frontend, I try to illustrate algorithms lik
 
 * Binary search (applicable to an ordered array)
 * Linear search
+* Bubble sort: consists of swapping values in an array until entire array is ordered
 
 ### Ordered array:
 
@@ -15,6 +16,7 @@ Using C# as backend, and angular as frontend, I try to illustrate algorithms lik
 
 ## RoadMap:
 
-* Arrays
+* Binary Search
+* Sorting Algorithms (bubble, selection, insertion)
 * Linked lists
 * Tree structures

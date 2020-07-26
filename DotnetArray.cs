@@ -119,6 +119,7 @@ namespace DataStruct
             return instanceArray as T[];
         }
     }
+
     public class SearchResult
     {
         public List<int> VisitedIndex {get;set;}
