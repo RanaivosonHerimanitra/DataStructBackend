@@ -13,7 +13,9 @@ Using C# as backend, and angular as frontend, I try to illustrate algorithms lik
 
 * Stack: you are only allowed to access the last inserted item. If you remove this item, you can access the next to last item inserted.
 
-* Queue: 02 operations insertion takes place at the rear (bottom) and removal at the front (top).
+* Queue: 02 operations insertion takes place at the rear (bottom) and removal at the front (top). A variant is deque where one can insert/remove both on the right and left sides.
+
+* Priority queue: a variant of queue where items are ordered. The minimum key item is always at the top of the array.
 
 
 ### Ordered array:

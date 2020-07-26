@@ -7,11 +7,11 @@ namespace DataStructBackend
 {
     public class DotnetQueue
     {
-        private int maxSize;
-        private long[] instanceArray;
-        private int front;
-        private int rear;
-        private int nItems;
+        protected int maxSize;
+        protected long[] instanceArray;
+        public int front;
+        public int rear;
+        public int nItems;
 
         public DotnetQueue(int size)
         {
@@ -22,14 +22,14 @@ namespace DataStructBackend
             nItems = 0;
         }
 
-        public void Insert(long item)
+        public virtual void Insert(long item)
         {
             if (rear == maxSize - 1) rear = -1;
             instanceArray[++rear] = item;
         }
 
         // take item from front of queue:
-        public long Remove()
+        public virtual long Remove()
         {
             long tempArray = instanceArray[front++];
             if (front == maxSize) front = 0;
