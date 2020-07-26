@@ -18,5 +18,8 @@ Using C# as backend, and angular as frontend, I try to illustrate algorithms lik
 
 * Binary Search
 * Sorting Algorithms (bubble, selection, insertion)
+* Stacks and queues
 * Linked lists
+* Recursion
+* MergeSort
 * Tree structures

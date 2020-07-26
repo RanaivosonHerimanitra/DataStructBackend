@@ -59,6 +59,22 @@ namespace DataStructBackend
             return indexCorrespondingToMinValue;
         }
 
+        public void InsertionSort()
+        {
+            int inner, outer;
+            for (outer =1; outer<nElems; outer++)
+            {
+                long tempArrayValue = instanceArray[outer];
+                inner = outer;
+                while (inner > 0 && instanceArray[inner-1] >= tempArrayValue)
+                {
+                    instanceArray[inner] = instanceArray[inner - 1];
+                    inner--;
+                }
+                instanceArray[inner] = tempArrayValue;
+            }
+        }
+
         public void Swap(int one, int two)
         {
             long valuePreviouslyAtOne = instanceArray[one];
