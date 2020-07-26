@@ -5,8 +5,8 @@ Using C# as backend, and angular as frontend, I try to illustrate algorithms lik
 
 ## In progress
 
-* Binary search (applicable to an ordered array)
-* Linear search
+* Linear search: loop until a match is found. In worst case scenario, could be the last item in the array so complexity is O(N)
+* Binary search: (applicable to an ordered array) O(logN) because at each iteration, search space is divided by two, so number of step involved at finding a search key is proportional to logarithm of N.
 * Bubble sort: consists of swapping values in an array until entire array is ordered
 * Stack: you are only allowed to access the last inserted item. If you remove this item, you can access the next to last item inserted.
 
