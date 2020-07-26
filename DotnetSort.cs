@@ -21,7 +21,7 @@ namespace DataStructBackend
             instanceArray[nElems] = value;
             nElems++;
         }
-
+        // O(N**2)
         public void BubbleSort()
         {
             int outer;
@@ -33,6 +33,30 @@ namespace DataStructBackend
                     if (instanceArray[inner] > instanceArray[inner + 1]) Swap(inner, inner + 1);
                 }
             }
+        }
+
+        public void SelectionSort()
+        {
+            int outer;
+            int indexCorrespondingToMinValue;
+            for (outer=0; outer<nElems -1; outer++)
+            {
+                indexCorrespondingToMinValue = outer;
+                indexCorrespondingToMinValue= FindIndexCorrespondingToMinValueStartingAt(outer + 1, indexCorrespondingToMinValue);
+                Swap(outer, indexCorrespondingToMinValue);
+            }
+        }
+
+        public int FindIndexCorrespondingToMinValueStartingAt(int startAt, int indexCorrespondingToMinValue)
+        {
+            for (int inner = startAt; inner < nElems; inner++ )
+            {
+                if (instanceArray[inner]<instanceArray[indexCorrespondingToMinValue])
+                {
+                    return inner;
+                }
+            }
+            return indexCorrespondingToMinValue;
         }
 
         public void Swap(int one, int two)
