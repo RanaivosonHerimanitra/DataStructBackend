@@ -39,7 +39,7 @@ namespace DataStructBackend.Controllers
         {
             var array = new DotnetArray<long>(MAX_ELEMENTS + 1);
             array.BinarySearch(searchQuery.Array, searchQuery.SearchKey);
-            return Ok(new BinarySearchResult { VisitedIndex= array.visitedIndexOnBinarySearch, Found = array.found });
+            return Ok(new SearchResult { VisitedIndex= array.visitedIndexOnBinarySearch, Found = array.found });
         }
     }
 }
