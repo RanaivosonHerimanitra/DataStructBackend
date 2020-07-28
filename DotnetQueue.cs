@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace DataStructBackend
 {
-    public class DotnetQueue
+    public class DotnetQueue<T>
     {
         protected int maxSize;
-        protected long[] instanceArray;
+        protected T[] instanceArray;
         public int front;
         public int rear;
         public int nItems;
@@ -16,28 +16,28 @@ namespace DataStructBackend
         public DotnetQueue(int size)
         {
             maxSize = size;
-            instanceArray = new long[maxSize];
+            instanceArray = new T[maxSize];
             front = 0;
             rear = -1;
             nItems = 0;
         }
 
-        public virtual void Insert(long item)
+        public virtual void Insert(T item)
         {
             if (rear == maxSize - 1) rear = -1;
             instanceArray[++rear] = item;
         }
 
         // take item from front of queue:
-        public virtual long Remove()
+        public virtual T Remove()
         {
-            long tempArray = instanceArray[front++];
+            T tempArray = instanceArray[front++];
             if (front == maxSize) front = 0;
             nItems--;
             return tempArray;
         }
 
-        public long PeekFront()
+        public T PeekFront()
         {
             return instanceArray[front];
         }

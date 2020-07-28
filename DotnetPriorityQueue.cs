@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace DataStructBackend
 {
-    public class DotnetPriorityQueue : DotnetQueue
+    public class DotnetPriorityQueue<T> : DotnetQueue<T> where T : IComparable
     {
         public DotnetPriorityQueue(int size): base(size) 
         {
             maxSize = size;
-            instanceArray = new long[maxSize];
+            instanceArray = new T[maxSize];
             nItems = 0;
         }
 
         //redefinition de Insert:
-        public override void Insert(long item)
+        public override void Insert(T item)
         {
             int counter;
             if (nItems == 0) instanceArray[nItems++] = item;
@@ -24,7 +24,7 @@ namespace DataStructBackend
             {
                 for(counter=nItems -1; counter>=0; counter--)
                 {
-                    if (item > instanceArray[counter]) instanceArray[counter + 1] = instanceArray[counter];
+                    if (item.CompareTo(instanceArray[counter])>=0) instanceArray[counter + 1] = instanceArray[counter];
                     else
                     {
                         break;
@@ -37,13 +37,13 @@ namespace DataStructBackend
         }
 
         // remove minimum item:
-        public override long Remove()
+        public override T Remove()
         {
             return instanceArray[--nItems];
         }
 
         //
-        public long PeekMininimumItem()
+        public T PeekMininimumItem()
         {
             return instanceArray[nItems - 1];
         }
