@@ -37,9 +37,20 @@ namespace DataStructBackend
             return tempArray;
         }
 
+        public void Push(T value)
+        {
+            instanceArray[++front] = value;
+            nItems++;
+        }
+
         public T PeekFront()
         {
             return instanceArray[front];
+        }
+
+        public T Pop()
+        {
+            return instanceArray[front--];
         }
 
         public bool IsEmpty()

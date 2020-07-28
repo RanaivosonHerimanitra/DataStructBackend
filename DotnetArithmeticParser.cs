@@ -18,7 +18,7 @@ namespace DataStructBackend
         }
 
         //put item on top of the array
-        public void Push(char value)
+        public new void Push(char value)
         {
             instanceArray[++top] = value;
             nItems++;
@@ -48,12 +48,12 @@ namespace DataStructBackend
         }
     }
     
-    public class InfixToPostFixConverter {
+    public class EvaluationExpressionConverter {
         private DotnetArithmeticParser Parser;
         private string Input;
         private string Output;
 
-        public InfixToPostFixConverter(string input)
+        public EvaluationExpressionConverter(string input)
         {
             Input = input;
             int stackSize = Input.Length;
@@ -61,7 +61,7 @@ namespace DataStructBackend
         }
 
         // do translation to postfix
-        public string Transform()
+        public string ToPostFix()
         {
             for(int j=0; j<Input.Length; j++)
             {
@@ -145,6 +145,49 @@ namespace DataStructBackend
                     break;
                 }
             }
+        }
+        
+        // evaluate post fix expression
+        public decimal EvaluatePostFix(string postfixString)
+        {
+            string character;
+            int j;
+            int num1, num2;
+            decimal interAns = 0;
+            string[] postfixStringArray = postfixString.Split("");
+            var myqueue = new DotnetQueue<int>(postfixStringArray.Length);
+
+            for (j=0; j< postfixStringArray.Length;j++)
+            {
+                character = postfixStringArray[j];
+                if (Int32.Parse(character) >= 0 && Int32.Parse(character) <= 9)
+                {
+                    myqueue.Push(Int32.Parse(character));
+                } else
+                {
+                    num2 = myqueue.Pop();
+                    num1= myqueue.Pop();
+                    switch(character)
+                    {
+                        case "+":
+                            interAns = num1 + num2;
+                            break;
+                        case "-":
+                            interAns = num1 - num2;
+                            break;
+                        case "*":
+                            interAns = num1 * num2;
+                            break;
+                        case "/":
+                            interAns = num1 / num2;
+                            break;
+                        default:
+                            interAns = 0;
+                            break;
+                    }
+                }
+            }
+            return interAns;
         }
     }
 }
