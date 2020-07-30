@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 
 namespace DataStructBackend
 {
     /*
-     * Linked list with simple operation:
-     * inserting an item at the beginning of the list
-     * deleting an item at the beginning of the list
+     * Linked list with simple operations:
+     * inserting an item at the beginning of the chain
+     * deleting an item at the beginning of the chain
+     * ability to find and delete specified link
      */
     public class DotnetLinkedList
     {
-        public int iData;
+        public int key;
         public decimal dData;
         public DotnetLinkedList first;
         public DotnetLinkedList next;
 
         public DotnetLinkedList(int id, decimal value)
         {
-            iData = id;
+            key = id;
             dData = value;
         }
 
@@ -39,6 +39,40 @@ namespace DataStructBackend
         public void DeleteFirst()
         {
             first = first.next;
+        }
+
+        public DotnetLinkedList FindLinear(int key)
+        {
+            DotnetLinkedList currentLink = first; //start at the first link item
+            while (currentLink.key != key)
+            {
+                if (currentLink.next == null) return null;
+                currentLink = currentLink.next;
+            }
+            return currentLink;
+        }
+
+        // assumes a non empty list:
+        public DotnetLinkedList Delete(int key)
+        {
+            DotnetLinkedList currentLink = first;
+            DotnetLinkedList previousLink = first;
+            while (currentLink.key != key)
+            {
+                if (currentLink.next == null) return null;
+                previousLink = currentLink;
+                currentLink = currentLink.next;
+            }
+            if (currentLink == first)
+            {
+                first = first.next;
+            }
+            else
+            {
+                //currentLink which is the node to be deleted will be bypass
+                previousLink.next = currentLink.next;
+            }
+            return currentLink;
         }
     }
 }
