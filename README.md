@@ -17,6 +17,7 @@ Using C# as backend, and angular as frontend, I try to illustrate algorithms lik
 
 * Priority queue: a variant of queue where items are ordered. The minimum key item is always at the top of the array.
 
+* Linked Lists: insertion is N independent so O(1), because either one inserts at the beginning or at the end. find and deletion are `O(N)` because algorithm loops through list but still faster than array implementation of those methods.
 
 ### Ordered array:
 
