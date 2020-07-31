@@ -25,7 +25,7 @@ namespace DataStructBackend
         }
 
         //take item from top of the stack
-        public char Pop()
+        public new char Pop()
         {
             return instanceArray[top--];
         }

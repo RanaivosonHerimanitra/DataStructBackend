@@ -9,13 +9,13 @@ namespace DataStructBackend.Tests
     [TestFixture]
     public class DotnetQueueTests
     {
-        private DotnetQueue queue;
+        private DotnetQueue<int> queue;
         private readonly int N = 5;
 
         [SetUp]
         public void SetUp()
         {
-            queue = new DotnetQueue(N);
+            queue = new DotnetQueue<int>(N);
         }
 
         [Test]
